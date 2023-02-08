@@ -1,0 +1,17 @@
+@brand-color: dodgerblue;
+@topic-text-color: #444;
+@base-text-size: 1.5em;
+
+.one-line-ellipsis { /* mixin, not a class */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.several-line-ellipsis(@lines) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @lines;
+    -webkit-box-orient: vertical;
+}
