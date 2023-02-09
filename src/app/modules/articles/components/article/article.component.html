@@ -1,0 +1,21 @@
+<div class="aac-article-component" [ngClass]="{'is-read': isRead}">
+    <div class="title">
+        <input type="checkbox" [(ngModel)]="isRead" (change)="onIsReadChanged()" />
+        <span #titleElement [innerText]="title" (click)="onTitleClicked()"></span>
+    </div>
+
+    <div>
+        <div [innerText]="date | date : 'dd/MM/yyyy'"></div>
+        <div [ngSwitch]="isRead">
+            <div *ngSwitchCase="true" [innerText]="ArticleStatus.Read"></div>
+            <div *ngSwitchCase="false" [innerText]="ArticleStatus.Unread"></div>
+        </div>
+    </div>
+
+    <div [hidden]="isRead">
+        <div class="sub-title" [innerText]="subTitle | subTitlePipe"></div>
+
+        <aac-paragraph *ngFor="let paragraph of paragraphs" [title]="paragraph.title" [body]="paragraph.body" [isRemote]="paragraph.isRemote"></aac-paragraph>
+    </div>
+</div>
+
