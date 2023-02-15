@@ -1,0 +1,25 @@
+<div class="option-chooser-component">
+  <div
+    *ngFor="let option of options; index as i"
+    class="option-wrapper">
+
+    <input
+      *ngIf="isMultiselect"
+      type="checkbox"
+      [id]="uuid + '-' + i"
+      [checked]="isOptionSelected(option) ? 'checked' : undefined"
+      (change)="onSelectedOptionChange($event, option)" />
+
+    <input
+      *ngIf="!isMultiselect"
+      type="radio"
+      [id]="uuid + '-' + i"
+      [name]="uuid"
+      [value]="option.value"
+      [(ngModel)]="selectedOption"
+      (change)="onSelectedOptionChange($event, option)"
+      />
+    <label [for]="uuid + '-' + i" [innerText]="option.title"></label>
+
+  </div>
+</div>

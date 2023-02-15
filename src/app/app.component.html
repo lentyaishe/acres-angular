@@ -1,12 +1,26 @@
-<aac-article 
+<!-- <aac-article
     *ngFor="let article of articles"
     [date]="article.date"
-    [title]="article.title" 
-    [subTitle]="article.subTitle" 
+    [title]="article.title"
+    [subTitle]="article.subTitle"
     [paragraphs]="article.paragraphs"
     [(isRead)]="article.isRead"
     (titleClicked)="onTitleClicked()"
     (isReadChange)="onIsReadChanged(article.id, $event)">
-</aac-article>
+</aac-article> -->
+
+<aac-option-chooser
+  [isMultiselect]="true"
+  [options]="optionsSet1"
+  [(value)]="selectedOption1"
+></aac-option-chooser>
+{{"selectedOption1: " + selectedOption1}}
+
+<aac-option-chooser
+  [isMultiselect]="true"
+  [options]="optionsSet2"
+  [(value)]="selectedOption2"
+></aac-option-chooser>
+{{"selectedOption2: " + JSON.stringify(selectedOption2)}}
 
 <router-outlet></router-outlet>
