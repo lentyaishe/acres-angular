@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CoreRoutes } from "src/app/constants/routes.constant";
+import { AuthenticationService } from "../../services/authentication.service";
 import { LayoutService } from "../../services/layout.service";
 import { BasePage } from "../base.page";
 
@@ -14,9 +15,10 @@ export class Page2Page extends BasePage {
     constructor(
         route: ActivatedRoute,
         private router: Router,
-        layoutService: LayoutService
+        layoutService: LayoutService,
+        authenticationService: AuthenticationService
     ) {
-        super(route, layoutService, CoreRoutes.page2.title);
+        super(route, layoutService, authenticationService, CoreRoutes.page2.title);
     }
 
     public onHomeButtonClick(): void {

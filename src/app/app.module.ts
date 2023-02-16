@@ -6,17 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArticlesModule } from './modules/articles/articles.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
-      BrowserModule,
-      AppRoutingModule,
-      ArticlesModule,
-      CoreModule,
-      BrowserAnimationsModule
+        BrowserModule,
+        AppRoutingModule,
+        ArticlesModule,
+        CoreModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]

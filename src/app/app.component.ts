@@ -2,8 +2,10 @@ import { ISelectableOption } from './modules/core/models/selectable-option';
 import { Component } from "@angular/core";
 import { Paragraph } from "./modules/articles/models/paragraph";
 import { LocalStorageService } from "./modules/core/services/local-storage.service";
-import { ArticlesRoutes, CoreRoutes } from './constants/routes.constant';
+import { CoreRoutes } from './constants/routes.constant';
 import { LayoutService } from './modules/core/services/layout.service';
+import { AuthenticationService } from './modules/core/services/authentication.service';
+import { Router } from '@angular/router';
 
 interface ArticleBase {
     id: number;
@@ -40,8 +42,10 @@ export class AppComponent {
     }];
 
     constructor(
+        private router: Router,
         private localStorageService: LocalStorageService,
-        public layoutService: LayoutService
+        public layoutService: LayoutService,
+        public authenticationService: AuthenticationService
     ) {
         this.articles.push({
             id: 1,
@@ -113,5 +117,10 @@ export class AppComponent {
         });
 
         this.localStorageService.set("articles", articlesToSave);
+    }
+
+    public onLogoutClick(): void {
+        this.authenticationService.logout();
+        this.router.navigate([CoreRoutes.login.route]);
     }
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from "@angular/core";
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { Paragraph } from "../../models/paragraph";
 import { ParagraphComponent } from "../paragraph/paragraph.component";
 
@@ -29,7 +29,9 @@ export class ArticleComponent implements OnInit, AfterViewInit {
 
     // public firstParagraph: Paragraph | null = null;
 
-    constructor() {
+    constructor(
+        private changeDetectorRef: ChangeDetectorRef
+    ) {
         // console.log("Constructor: title:", this.title); // title is still "" which is the default value
     }
 
@@ -40,6 +42,16 @@ export class ArticleComponent implements OnInit, AfterViewInit {
         // }
 
         console.log("OnInit: title:", this.titleElement)
+
+        this.isRead = false;
+        // About 70% of such an exception will be fixed by cdr (changeDetectorRef)
+        // ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'true'. Current value: 'false'
+        this.changeDetectorRef.detectChanges();
+
+        // if not solved by cdr do it with setTimeout
+        setTimeout(() => {
+            this.isRead = false;   
+        });
     }
     
     public ngAfterViewInit(): void {
