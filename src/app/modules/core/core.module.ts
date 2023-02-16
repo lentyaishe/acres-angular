@@ -10,12 +10,17 @@ import { CoreRoutes } from "src/app/constants/routes.constant";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
 import { PageNotFoundPage } from "./pages/pagenotfound/page-not-found.page";
+import { LoginPage } from './pages/login/login.page';
+import { HttpClientModule } from "@angular/common/http";
+import { AuthenticationGuard } from "./guards/authentication.guard";
 
 const routes: Routes = [
-    { path: CoreRoutes.page1.route, component: Page1Page },
-    { path: CoreRoutes.page1WithParam1.route, component: Page1Page },
-    { path: CoreRoutes.page2.route, component: Page2Page },
+    { path: CoreRoutes.page1.route, component: Page1Page, canActivate: [AuthenticationGuard] },
+    { path: CoreRoutes.page1WithParam1.route, component: Page1Page, canActivate: [AuthenticationGuard] },
+    { path: CoreRoutes.page2.route, component: Page2Page, canActivate: [AuthenticationGuard] },
+    { path: CoreRoutes.login.route, component: LoginPage },
     { path: "", redirectTo: CoreRoutes.page1.route, pathMatch: "full" },
     { path: "**", component: PageNotFoundPage }
 ];
@@ -26,7 +31,8 @@ const routes: Routes = [
         Page1Page,
         Page2Page,
         PageNotFoundPage,
-        MenuComponent
+        MenuComponent,
+        LoginPage
     ],
     imports: [
         CommonModule,
@@ -34,11 +40,16 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         MatChipsModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatInputModule,
+        HttpClientModule
     ],
     exports: [
         OptionChooserComponent,
         MenuComponent
+    ],
+    providers: [
+        AuthenticationGuard
     ]
 })
 export class CoreModule { }

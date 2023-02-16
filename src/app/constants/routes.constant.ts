@@ -22,6 +22,12 @@ export class CoreRoutes {
         title: "Page 2",
         showInMenu: true
     };
+
+    public static login: IMenuItem = {
+        route: "login",
+        title: "Login page",
+        showInMenu: false
+    };
 }
 
 export class ArticlesRoutes {

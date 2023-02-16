@@ -1,0 +1,16 @@
+<div class="login-page">
+    <mat-form-field class="login-field">
+        <mat-label>Login</mat-label>
+        <input type="text" matInput [(ngModel)]="loginInfo.username" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput [(ngModel)]="loginInfo.password" />
+    </mat-form-field>
+
+    <div class="control-buttons">
+        <button mat-flat-button color="primary" (click)="onLoginClick()">Login</button>
+        <button mat-flat-button (click)="onClearClick()">Clear</button>
+    </div>
+</div>

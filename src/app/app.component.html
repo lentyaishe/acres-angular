@@ -1,5 +1,11 @@
 <div class="page-wrapper flex flex-column">
-    <div class="header" [innerText]="layoutService.headerTitle"></div>
+    <div class="header-wrapper flex">
+        <div class="header-title flex-fill-remaining" [innerText]="layoutService.headerTitle"></div>
+        <button *ngIf="authenticationService.isAuthenticated" mat-icon-button color="primary" (click)="onLogoutClick()">
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
+
+    </div>
     <div class="menu-content-footer-wrapper flex flex-fill-remaining">
         <div class="menu">
             <aac-menu [routesClass]="CoreRoutes"></aac-menu>

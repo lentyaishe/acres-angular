@@ -1,11 +1,14 @@
+import { Directive } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { RouteParams } from "../models/route-params";
+import { AuthenticationService } from "../services/authentication.service";
 import { LayoutService } from "../services/layout.service";
 
 enum ParameterType {
     Number
 }
 
+@Directive()
 export abstract class BasePage {
     protected routeParams: RouteParams = {
         id: null
@@ -14,6 +17,7 @@ export abstract class BasePage {
     constructor(
         route: ActivatedRoute,
         layoutService: LayoutService,
+        protected authenticationService: AuthenticationService,
         title: string
     ) {
         layoutService.headerTitle = title;
