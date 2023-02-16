@@ -1,0 +1,9 @@
+<div class="menu-component">
+    <mat-chip-listbox aria-label="menu">
+        <mat-chip-option
+            *ngFor="let menuItem of menuItems"
+            (click)="onMenuItemClick(menuItem.route)">
+            {{menuItem.title}}
+        </mat-chip-option>
+    </mat-chip-listbox>
+</div>

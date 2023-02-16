@@ -1,26 +1,17 @@
-<!-- <aac-article
-    *ngFor="let article of articles"
-    [date]="article.date"
-    [title]="article.title"
-    [subTitle]="article.subTitle"
-    [paragraphs]="article.paragraphs"
-    [(isRead)]="article.isRead"
-    (titleClicked)="onTitleClicked()"
-    (isReadChange)="onIsReadChanged(article.id, $event)">
-</aac-article> -->
+<div class="page-wrapper flex flex-column">
+    <div class="header" [innerText]="layoutService.headerTitle"></div>
+    <div class="menu-content-footer-wrapper flex flex-fill-remaining">
+        <div class="menu">
+            <aac-menu [routesClass]="CoreRoutes"></aac-menu>
+        </div>
+        <div class="content-footer-wrapper flex flex-column flex-fill-remaining">
+            <div class="content flex-fill-remaining">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="footer">
+                Footer
+            </div>
+        </div>
+    </div>
+</div>
 
-<aac-option-chooser
-  [isMultiselect]="true"
-  [options]="optionsSet1"
-  [(value)]="selectedOption1"
-></aac-option-chooser>
-{{"selectedOption1: " + selectedOption1}}
-
-<aac-option-chooser
-  [isMultiselect]="true"
-  [options]="optionsSet2"
-  [(value)]="selectedOption2"
-></aac-option-chooser>
-{{"selectedOption2: " + JSON.stringify(selectedOption2)}}
-
-<router-outlet></router-outlet>
