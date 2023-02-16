@@ -1,0 +1,35 @@
+@import "../flex.less";
+@import "../theme.less";
+
+.page-wrapper {
+    height: 100vh;
+
+    .header {
+        height: @menu-height;
+        border: @base-border;
+    }
+
+    .menu-content-footer-wrapper {
+        height: calc(100% - @menu-height);
+
+        .menu {
+            border: @base-border;
+        }
+
+        .content-footer-wrapper {
+
+            .content {
+                overflow-y: auto;
+            }
+
+            .content,
+            .footer {
+                border: @base-border;
+            }
+
+            .footer {
+                height: @footer-height;
+            }
+        }
+    }
+}
