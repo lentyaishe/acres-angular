@@ -23,6 +23,18 @@ export class CoreRoutes {
         showInMenu: true
     };
 
+    public static boxSizing: IMenuItem = {
+        route: "box-sizing",
+        title: "Box sizing",
+        showInMenu: true
+    };
+
+    public static unhandledError: IMenuItem = {
+        route: "unhandled-error",
+        title: "Unhandled error",
+        showInMenu: true
+    };
+
     public static login: IMenuItem = {
         route: "login",
         title: "Login page",

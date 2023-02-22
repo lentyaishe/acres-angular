@@ -1,5 +1,5 @@
 import { CoreModule } from './modules/core/core.module';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +8,7 @@ import { ArticlesModule } from './modules/articles/articles.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { SystemErrorHandler } from './system-error-handler';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { MatIconModule } from "@angular/material/icon";
         MatButtonModule,
         MatIconModule
     ],
-    providers: [],
+    providers: [
+        {provide: ErrorHandler, useClass: SystemErrorHandler}],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
