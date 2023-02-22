@@ -27,7 +27,7 @@ export class Page2Page extends BasePage {
         }
         else {
             this.subscriptions.push(
-                boardTypesService.onReady.subscribe(() => {
+                boardTypesService.onReady$.subscribe(() => {
                     console.log(boardTypesService.boardTypes.length);
                 })
             );

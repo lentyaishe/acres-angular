@@ -24,6 +24,8 @@ interface IAuthenticationService {
 
     get<T>(url: string): Promise<T>;
     post<TRequest, TResponse>(url: string, body: TRequest): Promise<TResponse>;
+
+    getReactive<T>(url: string): Observable<T>;
 }
 
 @Injectable({
@@ -101,6 +103,15 @@ export class AuthenticationService implements IAuthenticationService {
                 reject("Unauthorized");
             }
         });
+    }
+
+    public getReactive<T>(url: string): Observable<T> {
+        if(this._token) {
+            return this.httpClient.get<T>(url, this.getHttpAuthenticatedHeaders());
+        }
+        else {
+            throw new Error("Unauthorized");
+        }
     }
 
     private getHttpAuthenticatedHeaders(): IHttpOptions {

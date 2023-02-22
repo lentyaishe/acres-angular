@@ -9,7 +9,7 @@ interface IBoardTypesService {
   boardTypes: IBoardType[];
   isReady: boolean;
 
-  onReady: Observable<void>;
+  onReady$: Observable<void>;
 }
 
 interface IBoardTypesResponse {
@@ -55,7 +55,7 @@ export class BoardTypesService implements IBoardTypesService {
     return this._isReady;
   }
 
-  public get onReady(): Observable<void> {
+  public get onReady$(): Observable<void> {
     return this._onReadySubject.asObservable();
   }
 

@@ -28,7 +28,7 @@ export class Page1Page extends BasePage {
             this.boardTypes = boardTypesService.boardTypes;
         }
         else {
-            boardTypesService.onReady
+            boardTypesService.onReady$
             .pipe(
                 take(1) // ensures the Observable is unsubscribed after the first next() on its Subject
             )
