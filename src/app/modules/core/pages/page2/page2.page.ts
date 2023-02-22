@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CoreRoutes } from "src/app/constants/routes.constant";
 import { AuthenticationService } from "../../services/authentication.service";
+import { BoardTypesService } from "../../services/board-types.service";
 import { LayoutService } from "../../services/layout.service";
 import { BasePage } from "../base.page";
 
@@ -16,9 +17,21 @@ export class Page2Page extends BasePage {
         route: ActivatedRoute,
         private router: Router,
         layoutService: LayoutService,
-        authenticationService: AuthenticationService
+        authenticationService: AuthenticationService,
+        boardTypesService: BoardTypesService
     ) {
         super(route, layoutService, authenticationService, CoreRoutes.page2.title);
+
+        if(boardTypesService.isReady) {
+            console.log(boardTypesService.boardTypes.length);
+        }
+        else {
+            this.subscriptions.push(
+                boardTypesService.onReady.subscribe(() => {
+                    console.log(boardTypesService.boardTypes.length);
+                })
+            );
+        }
     }
 
     public onHomeButtonClick(): void {

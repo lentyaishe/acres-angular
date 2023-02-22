@@ -29,7 +29,7 @@ export class LoginPage {
             .then(() => {
                 console.log("Successfull login");
 
-                this.router.navigate([CoreRoutes.page1.route]);
+                this.router.navigate([CoreRoutes.page2.route]);
 
             })
             .catch((error) => {

@@ -1,5 +1,6 @@
-import { Directive } from "@angular/core";
+import { Directive, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
+import { Subscription } from "rxjs";
 import { RouteParams } from "../models/route-params";
 import { AuthenticationService } from "../services/authentication.service";
 import { LayoutService } from "../services/layout.service";
@@ -9,10 +10,12 @@ enum ParameterType {
 }
 
 @Directive()
-export abstract class BasePage {
+export abstract class BasePage implements OnDestroy {
     protected routeParams: RouteParams = {
         id: null
     };
+
+    protected subscriptions: Subscription[] = [];
 
     constructor(
         route: ActivatedRoute,
@@ -26,6 +29,12 @@ export abstract class BasePage {
             this.setRouteParamByName("id", ParameterType.Number, params);
 
             this.initialize();
+        });
+    }
+
+    public ngOnDestroy(): void {
+        this.subscriptions.forEach((subscription: Subscription) => {
+            subscription.unsubscribe();
         });
     }
 
