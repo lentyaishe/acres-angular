@@ -17,7 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AuthenticationGuard } from "./guards/authentication.guard";
 import { BoxSizingPage } from "./pages/box-sizing/box-sizing.page";
 import { UnhandledErrorPage } from "./pages/unhandled-error/unhandled-error.page";
-import { SystemErrorHandler } from "src/app/system-error-handler";
+import { RxjsPage } from "./pages/rxjs/rxjs.page";
 
 const routes: Routes = [
     { path: CoreRoutes.page1.route, component: Page1Page, canActivate: [AuthenticationGuard] },
@@ -25,6 +25,7 @@ const routes: Routes = [
     { path: CoreRoutes.page2.route, component: Page2Page, canActivate: [AuthenticationGuard] },
     { path: CoreRoutes.boxSizing.route, component: BoxSizingPage },
     { path: CoreRoutes.unhandledError.route, component: UnhandledErrorPage },
+    { path: CoreRoutes.rxjs.route, component: RxjsPage },
     { path: CoreRoutes.login.route, component: LoginPage },
     { path: "", redirectTo: CoreRoutes.page1.route, pathMatch: "full" },
     { path: "**", component: PageNotFoundPage }
@@ -39,7 +40,8 @@ const routes: Routes = [
         MenuComponent,
         LoginPage,
         BoxSizingPage,
-        UnhandledErrorPage
+        UnhandledErrorPage,
+        RxjsPage
     ],
     imports: [
         CommonModule,

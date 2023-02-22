@@ -35,6 +35,12 @@ export class CoreRoutes {
         showInMenu: true
     };
 
+    public static rxjs: IMenuItem = {
+        route: "rxjs",
+        title: "RxJs",
+        showInMenu: true
+    };
+
     public static login: IMenuItem = {
         route: "login",
         title: "Login page",

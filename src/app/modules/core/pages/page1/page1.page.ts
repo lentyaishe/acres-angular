@@ -1,25 +1,12 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Endpoints } from "src/app/constants/endpoints.constants";
+import { take } from "rxjs";
 import { CoreRoutes } from "src/app/constants/routes.constant";
+import { IBoardType } from "../../models/board-type";
 import { AuthenticationService } from "../../services/authentication.service";
+import { BoardTypesService } from "../../services/board-types.service";
 import { LayoutService } from "../../services/layout.service";
 import { BasePage } from "../base.page";
-import * as _ from "underscore";
-
-interface IBoardTypesResponse {
-    types: IServerBoardType[];
-}
-
-interface IServerBoardType {
-    id: number;
-    type: string;
-}
-
-interface IBoardType {
-    id: number;
-    type: string;
-}
 
 @Component({
     selector: "aac-page1",
@@ -32,27 +19,26 @@ export class Page1Page extends BasePage {
     constructor(
         route: ActivatedRoute,
         layoutService: LayoutService,
-        authenticationService: AuthenticationService
+        authenticationService: AuthenticationService,
+        boardTypesService: BoardTypesService
     ) {
         super(route, layoutService, authenticationService, CoreRoutes.page1.title);
+
+        if(boardTypesService.isReady) {
+            this.boardTypes = boardTypesService.boardTypes;
+        }
+        else {
+            boardTypesService.onReady
+            .pipe(
+                take(1) // ensures the Observable is unsubscribed after the first next() on its Subject
+            )
+            .subscribe(() => {
+                this.boardTypes = boardTypesService.boardTypes;
+            });
+        }
     }
 
     protected initialize(): void {
         console.log(this.routeParams.id);
-
-        this.authenticationService.get<IBoardTypesResponse>(Endpoints.BoardTypes)
-            .then((response: IBoardTypesResponse) => {
-                this.boardTypes = _.map(response.types, (serverBoardType: IServerBoardType) => this.toLocalBoardType(serverBoardType));
-            })
-            .catch((error) => {
-                console.warn(error);
-            });
-    }
-
-    private toLocalBoardType(serverBoardType: IServerBoardType): IBoardType {
-        return {
-            id: serverBoardType.id,
-            type: serverBoardType.type
-        };
     }
 }
