@@ -18,6 +18,9 @@ import { AuthenticationGuard } from "./guards/authentication.guard";
 import { BoxSizingPage } from "./pages/box-sizing/box-sizing.page";
 import { UnhandledErrorPage } from "./pages/unhandled-error/unhandled-error.page";
 import { RxjsPage } from "./pages/rxjs/rxjs.page";
+import { BoardTypesReactiveCachedPage } from "./pages/board-types-reactive-cached/board-types-reactive-cached.page";
+import { BoardTypesReactivePage } from "./pages/board-types-reactive/board-types-reactive.page";
+import { BoardTypesReactiveSearchPage } from "./pages/board-types-reactive-search/board-types-reactive-search.page";
 
 const routes: Routes = [
     { path: CoreRoutes.page1.route, component: Page1Page, canActivate: [AuthenticationGuard] },
@@ -26,6 +29,9 @@ const routes: Routes = [
     { path: CoreRoutes.boxSizing.route, component: BoxSizingPage },
     { path: CoreRoutes.unhandledError.route, component: UnhandledErrorPage },
     { path: CoreRoutes.rxjs.route, component: RxjsPage },
+    { path: CoreRoutes.boardTypesReactiveCached.route, component: BoardTypesReactiveCachedPage, canActivate: [AuthenticationGuard]   },
+    { path: CoreRoutes.boardTypesReactive.route, component: BoardTypesReactivePage, canActivate: [AuthenticationGuard]   },
+    { path: CoreRoutes.boardTypesReactiveWithSesrch.route, component: BoardTypesReactiveSearchPage, canActivate: [AuthenticationGuard]   },
     { path: CoreRoutes.login.route, component: LoginPage },
     { path: "", redirectTo: CoreRoutes.page1.route, pathMatch: "full" },
     { path: "**", component: PageNotFoundPage }
@@ -41,7 +47,10 @@ const routes: Routes = [
         LoginPage,
         BoxSizingPage,
         UnhandledErrorPage,
-        RxjsPage
+        RxjsPage,
+        BoardTypesReactiveCachedPage,
+        BoardTypesReactivePage,
+        BoardTypesReactiveSearchPage
     ],
     imports: [
         CommonModule,

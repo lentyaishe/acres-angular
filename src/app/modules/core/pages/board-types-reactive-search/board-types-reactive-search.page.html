@@ -1,0 +1,8 @@
+<div class="board-types-reactive-search-page" *ngIf="boardTypes$ | async as boardTypes">
+    <mat-form-field class="search-field">
+        <mat-label>Filter</mat-label>
+        <input type="text" matInput [(ngModel)]="searchBy" (keyup)="onSearchByKeyUp()" />
+    </mat-form-field>
+
+    <div *ngFor="let boardType of boardTypes" [innerText]="boardType.type"></div>
+</div>

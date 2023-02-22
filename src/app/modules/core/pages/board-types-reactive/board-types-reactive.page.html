@@ -1,0 +1,3 @@
+<div class="board-types-reactive-page" *ngIf="boardTypes$ | async as boardTypes">
+    <div *ngFor="let boardType of boardTypes" [innerText]="boardType.type"></div>
+</div>

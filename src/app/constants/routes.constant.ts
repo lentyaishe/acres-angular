@@ -41,6 +41,24 @@ export class CoreRoutes {
         showInMenu: true
     };
 
+    public static boardTypesReactiveCached: IMenuItem = {
+        route: "board-types-reactive-cached",
+        title: "Board types reactive (cached)",
+        showInMenu: true
+    };
+
+    public static boardTypesReactive: IMenuItem = {
+        route: "board-types-reactive",
+        title: "Board types reactive",
+        showInMenu: true
+    };
+
+    public static boardTypesReactiveWithSesrch: IMenuItem = {
+        route: "board-types-reactive-search",
+        title: "Board types reactive with search",
+        showInMenu: true
+    };
+
     public static login: IMenuItem = {
         route: "login",
         title: "Login page",
